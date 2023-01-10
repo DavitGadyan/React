@@ -1,7 +1,12 @@
+.row {
+    color: white;
+    margin-left: 20px;
+}
+
 .row__poster {
     width: 100%;
     object-fit: contain;
-    max-height: 200px;
+    max-height: 150px;
     transition: transform 450ms;
     margin-right: 10px;
 }
@@ -18,5 +23,12 @@
 
 .row__poster:hover {
     transform: scale(1.10);
+}
 
+.row__posterLarge {
+    max-height: 250px;
+}
+
+.row__posterLarge:hover {
+    transform: scale(1.20);
 }
