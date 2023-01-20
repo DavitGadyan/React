@@ -28,15 +28,20 @@ function App() {
       });
 
       spotify.getUserPlaylists().then((playlists) => {
-        console.log("xxxx>>>", playlists);
         ctxAuth.addPlaylists(playlists);
       });
+
+      spotify
+        .getPlaylist("2ntM4tlzBTn4YRFJfXPmnc")
+        .then((response) => ctxAuth.addDiscoverWeekly(response));
     }
   }, [ctxAuth]);
 
-  console.log("user>>>", ctxAuth.user);
-  console.log("token>>>>", ctxAuth.token);
-  console.log("playlists>>>>", ctxAuth.playlists);
+  console.log("user>>>", ctxAuth?.user);
+  console.log("user>>>", ctxAuth?.user?.display_name);
+  console.log("token>>>>", ctxAuth?.token);
+  console.log("playlists>>>>", ctxAuth?.playlists);
+  console.log("discover weekly>>>>", ctxAuth?.discover_weekly);
   return (
     <div className="App">
       <header className="App-header">

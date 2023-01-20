@@ -6,6 +6,8 @@ export const initialState = {
   playlists: [],
   playing: false,
   item: null,
+  discover_weekly: null,
+  selectedPlaylistId: null,
   // remove when in production
   //   token:
   //     "BQAfclVrcELK-8wLvobpS9jWQQRAaZSYIf5EXeGZBdRz1qbsiZLaVws0qH9YFc4La9Ng0WhAtw75vCgdR_G5-oObsZ0mGfTjZeva4FfNiYgZ8dZ8QWythYr7l6q0nUK0QhZNZDvJ4Fqg8IhgcHgyoO1gjuawFZ2ZXMujYggWnYKGxkCdae_QaaSwQZAq6iFTYzAHMCBd1uvPln3GU5P4",
@@ -13,7 +15,7 @@ export const initialState = {
 };
 
 const reducer = (state, action) => {
-  console.log(action);
+  //   console.log(action);
 
   switch (action.type) {
     case "SET_USER":
@@ -22,6 +24,10 @@ const reducer = (state, action) => {
       return { ...state, token: action.token };
     case "SET_PLAYLISTS":
       return { ...state, playlists: action.playlists };
+    case "SET_DISCOVER_WEEKLY":
+      return { ...state, discover_weekly: action.discover_weekly };
+    case "SET_SELECTED_PLAYLIST":
+      return { ...state, selectedPlaylistId: action.selectedPlaylistId };
 
     default:
       return state;
@@ -43,6 +49,14 @@ export const DataLayer = (props) => {
     dispatch({ type: "SET_PLAYLISTS", playlists: playlists });
   };
 
+  const addDiscoverWeeklyHandler = (response) => {
+    dispatch({ type: "SET_DISCOVER_WEEKLY", discover_weekly: response });
+  };
+
+  const addDSelectedPlaylistIdHandler = (id) => {
+    dispatch({ type: "SET_SELECTED_PLAYLIST", selectedPlaylistId: id });
+  };
+
   const cartContext = {
     ...cartState,
     user: cartState.user,
@@ -50,6 +64,8 @@ export const DataLayer = (props) => {
     addUser: addUserHandler,
     addToken: addTokenHandler,
     addPlaylists: addPlaylistsHandler,
+    addDiscoverWeekly: addDiscoverWeeklyHandler,
+    addDSelectedPlaylistId: addDSelectedPlaylistIdHandler,
   };
 
   return (

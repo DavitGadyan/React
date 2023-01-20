@@ -1,24 +1,13 @@
 .sidebar {
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
   flex: 0.2;
-  color: white;
   padding-left: 10px;
   padding-right: 10px;
   min-width: 230px;
   height: 100vh;
+  color: white;
   background-color: #040404;
-}
-
-.sidebar > hr {
-  border: 1px solid #282828;
-  width: 90%;
-  margin: 10px auto;
-}
-
-.sidebar__logo {
-  margin-right: auto;
-  height: 70px;
-  padding: 10px;
 }
 
 .sidebar__title {
@@ -27,8 +16,9 @@
   font-size: 12px;
 }
 
-.sidebar > p {
-  margin-top: 10px;
-  margin-left: 20px;
-  font-size: 14px;
+.sidebar__logo {
+  margin-right: auto;
+  object-fit: contain;
+  height: 70px;
+  padding: 10px;
 }

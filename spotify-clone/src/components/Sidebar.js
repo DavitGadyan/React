@@ -24,7 +24,11 @@ const Sidebar = () => {
       <strong className="sidebar__title">PLAYLISTS</strong>
       <hr />
       {ctxAuth.playlists?.items?.map((playlist) => (
-        <SidebarOption title={playlist.name} key={playlist.id} />
+        <SidebarOption
+          title={playlist.name}
+          key={playlist.id}
+          playlistId={playlist.id}
+        />
       ))}
     </div>
   );
