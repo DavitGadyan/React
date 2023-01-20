@@ -28,6 +28,10 @@ const reducer = (state, action) => {
       return { ...state, discover_weekly: action.discover_weekly };
     case "SET_SELECTED_PLAYLIST":
       return { ...state, selectedPlaylistId: action.selectedPlaylistId };
+    case "SET_ITEM":
+      return { ...state, item: action.item };
+    case "SET_PLAYING":
+      return { ...state, playing: action.playing };
 
     default:
       return state;
@@ -57,6 +61,11 @@ export const DataLayer = (props) => {
     dispatch({ type: "SET_SELECTED_PLAYLIST", selectedPlaylistId: id });
   };
 
+  const addItemHandler = (r) => {
+    dispatch({ type: "SET_ITEM", item: r.item });
+    dispatch({ type: "SET_PLAYING", playing: true });
+  };
+
   const cartContext = {
     ...cartState,
     user: cartState.user,
@@ -66,6 +75,7 @@ export const DataLayer = (props) => {
     addPlaylists: addPlaylistsHandler,
     addDiscoverWeekly: addDiscoverWeeklyHandler,
     addDSelectedPlaylistId: addDSelectedPlaylistIdHandler,
+    addItem: addItemHandler,
   };
 
   return (

@@ -11,6 +11,7 @@ const initialState = {
   addUser: (user) => {},
   addToken: (token) => {},
   addPlaylists: (playlists) => {},
+  addItem: (id) => {},
   addDiscoverWeekly: (response) => {},
   addDSelectedPlaylistId: (id) => {},
 };

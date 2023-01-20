@@ -6,10 +6,42 @@ import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import SongRow from "./SongRow";
+import SpotifyWebApi from "spotify-web-api-js";
 import "./Body.css";
 
-const Body = ({ spotify }) => {
+const spotify = new SpotifyWebApi();
+
+const Body = () => {
   const ctxAuth = useContext(DataLayerContext);
+
+  const playPlaylist = (id) => {
+    spotify.setAccessToken(ctxAuth.token);
+
+    spotify
+      .play({
+        context_uri: `spotify:playlist:37i9dQZEVXcJZyENOWUFo7`,
+      })
+      .then((res) => {
+        spotify.getMyCurrentPlayingTrack().then((r) => {
+          ctxAuth.addItem(r);
+        });
+      });
+  };
+
+  const playSong = (id) => {
+    spotify.setAccessToken(ctxAuth.token);
+
+    spotify
+      .play({
+        uris: [`spotify:track:${id}`],
+      })
+      .then((res) => {
+        spotify.getMyCurrentPlayingTrack().then((r) => {
+          ctxAuth.addItem(r);
+        });
+      });
+  };
+
   return (
     <div className="body">
       <Header spotify={spotify} />
@@ -24,12 +56,15 @@ const Body = ({ spotify }) => {
       </div>
       <div className="body__songs">
         <div className="body__icons">
-          <PlayCircleFilledIcon className="body__shuffle" />
+          <PlayCircleFilledIcon
+            className="body__shuffle"
+            onClick={playPlaylist}
+          />
           <FavoriteIcon fontSize="large" />
           <MoreHorizIcon />
         </div>
         {ctxAuth?.discover_weekly?.tracks?.items?.map((item) => (
-          <SongRow track={item?.track} key={item?.id} />
+          <SongRow track={item?.track} key={item?.id} playSong={playSong} />
         ))}
       </div>
     </div>
