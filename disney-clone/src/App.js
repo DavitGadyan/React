@@ -1,20 +1,29 @@
-import "./App.css";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./components/Login";
-import Root from "./components/Root";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Root />,
-    children: [{ path: "/", element: <Login /> }],
-  },
-
-  // errorElement: <ErrorPage />,
-]);
+import Header from "./components/Header";
+import "./App.css";
+// import Home from "./components/Home";
+// import Detail from "./components/Detail";
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <div className="App">
+      <Router>
+        <Header />
+        <Switch>
+          <Route exact path="/">
+            <Login />
+          </Route>
+          {/* <Route path="/home">
+            <Home />
+          </Route>
+          <Route path="/detail/:id">
+            <Detail />
+          </Route> */}
+        </Switch>
+      </Router>
+    </div>
+  );
 }
 
 export default App;
