@@ -57,6 +57,7 @@ const Header = (props) => {
   };
 
   console.log(userName);
+  console.log(userPhoto);
   return (
     <Nav>
       <Logo>
@@ -94,10 +95,14 @@ const Header = (props) => {
             </a>
           </NavMenu>
           <SignOut>
-            {/* <UserImg src={userPhoto} alt={userName} /> */}
-            {/* <DropDown> */}
-            <button onClick={handleAuth}>Sign out</button>
-            {/* </DropDown> */}
+            <UserImg
+              src={userPhoto}
+              alt={userName}
+              referrerPolicy="no-referrer"
+            />
+            <DropDown>
+              <span onClick={handleAuth}>Sign out</span>
+            </DropDown>
           </SignOut>
         </>
       )}
